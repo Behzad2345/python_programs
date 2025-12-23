@@ -1,0 +1,55 @@
+books = ["Python", "DBMS", "OS", "Computer Networks", "AI"]
+issued_books = {}
+
+while True:
+    print("\n--- Library Menu ---")
+    print("1. View available books")
+    print("2. Issue a book")
+    print("3. Return a book")
+    print("4. Check issued books")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        print("Available Books:")
+        for book in books:
+            print("-", book)
+
+    elif choice == 2:
+        book = input("Enter book name to issue: ")
+        if book in books:
+            days = int(input("Enter number of days: "))
+            issued_books[book] = days
+            books.remove(book)
+            print("Book issued successfully")
+        else:
+            print("Book not available")
+
+    elif choice == 3:
+        book = input("Enter book name to return: ")
+        if book in issued_books:
+            days = issued_books[book]
+            if days > 15:
+                fine = days - 15
+                print("Late return fine = ₹", fine)
+            else:
+                print("No fine")
+
+            books.append(book)
+            del issued_books[book]
+            print("Book returned successfully")
+        else:
+            print("This book was not issued")
+
+    elif choice == 4:
+        print("Issued Books:")
+        for book, days in issued_books.items():
+            print(book, "- Days:", days)
+
+    elif choice == 5:
+        print("Thank you for using the library system")
+        break
+
+    else:
+        print("Invalid choice")
