@@ -1,0 +1,13 @@
+# Program to Find Element Appearing More Than n/3 Times
+
+myList = [2, 2, 2, 2, 2, 2, 2, 1, 3]
+appearance = {}
+
+for num in myList:
+    appearance[num] = appearance.get(num, 0) + 1
+
+for key, value in appearance.items():
+    if value > len(myList) // 3:
+        print("The element appears more than n/3 times:", key)
+
+print("Frequency of elements:", appearance)
