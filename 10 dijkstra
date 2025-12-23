@@ -1,0 +1,35 @@
+# Dijkstra's Algorithm
+
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 5},
+    'C': {'A': 4, 'B': 2, 'D': 1},
+    'D': {'B': 5, 'C': 1}
+}
+
+source = 'A'
+visited = set()
+distance = {node: float('inf') for node in graph}
+distance[source] = 0
+
+while len(visited) < len(graph):
+    # Find unvisited node with minimum distance
+    min_node = None
+    min_dist = float('inf')
+
+    for node in graph:
+        if node not in visited and distance[node] < min_dist:
+            min_dist = distance[node]
+            min_node = node
+
+    visited.add(min_node)
+
+    for neighbor, weight in graph[min_node].items():
+        if neighbor not in visited:
+            new_dist = distance[min_node] + weight
+            if new_dist < distance[neighbor]:
+                distance[neighbor] = new_dist
+
+print("Shortest distances from source", source)
+for node in distance:
+    print(node, ":", distance[node])
