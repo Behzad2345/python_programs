@@ -1,0 +1,9 @@
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+n = int(input("Enter number of terms: "))
+
+print(a, b, end=" ")
+
+for _ in range(n - 2):
+    a, b = b, a + b
+    print(b, end=" ")
