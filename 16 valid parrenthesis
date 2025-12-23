@@ -1,0 +1,24 @@
+# Program to Check if a Bracket String is Valid
+
+def is_valid_brackets(s: str) -> bool:
+    stack = []
+    bracket_map = {')': '(', ']': '[', '}': '{'}
+
+    for char in s:
+        if char in bracket_map:
+            if stack and stack[-1] == bracket_map[char]:
+                stack.pop()
+            else:
+                return False
+        else:
+            stack.append(char)
+
+    return not stack
+
+
+# Input from user
+s = input("Enter the bracket string: ")
+if is_valid_brackets(s):
+    print("The bracket string is valid")
+else:
+    print("The bracket string is invalid")
